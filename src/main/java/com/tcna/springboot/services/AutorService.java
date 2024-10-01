@@ -14,7 +14,7 @@ public interface AutorService {
 
     List<Autor> listarTodosLosAutores();
 
-    Autor actualizaLibro(Autor autor);
+    Autor actualizaAutor(Autor autor);
 
     void eliminarAutor(Long id) throws ClassNotFoundException;
 

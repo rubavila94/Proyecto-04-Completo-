@@ -24,13 +24,13 @@ public class AutorController {
     public String listarAutores(Model model) {
         List<Autor> autores = autorService.listarTodosLosAutores();
         model.addAttribute("autores", autores);
-        return "autor/lista-autores";
+        return "autor/lista_autores";
     }
 
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevoAutor(Model model) {
         model.addAttribute("autor", new Autor());
-        return "autor/formulario-autor";
+        return "autor/formulario_autor";
     }
 
     @PostMapping("/guardar")
@@ -39,14 +39,22 @@ public class AutorController {
         return "redirect:/autores/listar";
     }
 
+    // Formulario para mostrar el formulario de editar un autor
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditarAutor(@PathVariable Long id, Model model) {
         Optional<Autor> autor = autorService.buscarPorId(id);
         autor.ifPresent(value -> model.addAttribute("autor", value));
-        return "autor/formulario-autor";
+        return "autor/formulario_autor";
     }
 
-    @GetMapping
+    // Metodo para editar directamente un autor
+    @PostMapping("/actualizar")
+    public String actualizarAutor(@ModelAttribute Autor autor) {
+        autorService.actualizaAutor(autor);
+        return "redirect:/autores/listar";
+    }
+
+    @GetMapping("/eliminar/{id}")
     public String eliminarAutor(@PathVariable Long id) throws ClassNotFoundException {
         autorService.eliminarAutor(id);
         return "redirect:/autores/listar";

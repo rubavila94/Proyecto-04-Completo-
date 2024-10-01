@@ -36,13 +36,13 @@ public class AutorServiceImpl implements AutorService {
     }
 
     @Override
-    public Autor actualizaLibro(Autor autor) {
+    public Autor actualizaAutor(Autor autor) {
         return autorRepository.save(autor);
 
     }
 
     @Override
-    public void eliminarAutor(Long id) throws ClassNotFoundException{
+    public void eliminarAutor(Long id) throws ClassNotFoundException {
         // autorRepository.deleteById(id);
         Optional<Autor> optionalAutor = autorRepository.findById(id);
 
