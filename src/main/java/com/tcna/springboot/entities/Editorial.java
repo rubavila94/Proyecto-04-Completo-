@@ -22,6 +22,9 @@ public class Editorial {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //Una editorial puede tener muchos libros
+    private String nombre;
+
+    // Una editorial puede tener muchos libros
     @OneToMany(mappedBy = "editorial", cascade = CascadeType.ALL)
-    private List<Libro> libros = new ArrayList<>();}
+    private List<Libro> libros = new ArrayList<>();
+}
