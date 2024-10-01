@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 //Este controlador es el mas largo porque va a utilizar
 //todas los demas controladores
@@ -77,7 +76,7 @@ public class LibroController {
         return "redirect:/libros/listar";
     }
 
-    @GetMapping("/nuevo")
+    @GetMapping("/editar")
     public String mostrarFormularioEditarLibro(@PathVariable Long id, Model model) {
         Optional<Libro> libro = libroService.buscarPorId(id);
         if (libro.isPresent()) {

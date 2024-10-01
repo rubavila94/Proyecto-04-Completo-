@@ -16,7 +16,7 @@ import com.tcna.springboot.services.LibroService;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/autores")
+@RequestMapping("/categorias")
 public class CategoriaController {
 
     @Autowired
