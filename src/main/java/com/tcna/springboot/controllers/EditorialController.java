@@ -56,7 +56,7 @@ public class EditorialController {
         return "editorial/mostrar_editorial";
     }
 
-    @GetMapping("/{id}/editar")
+    @GetMapping("/editar/{id}")
     public String mostrarFormularioEditarEditorial(@PathVariable Long id, Model model) {
         Optional<Editorial> editorial = editorialService.buscarPorId(id);
         editorial.ifPresent(value -> model.addAttribute("editorial", value));
@@ -74,14 +74,14 @@ public class EditorialController {
         return "editoriales/listar";
     }
 
-    @GetMapping("/{id}/eliminar")
+    @GetMapping("/eliminar/{id}")
     public String eliminarEditorial(@PathVariable Long id) {
         editorialService.eliminarEditorial(id);
-        return "editoriales/listar";
+        return "redirect:/editoriales/listar";
     }
 
     // mostramos os libros de una editorial
-    @GetMapping("/{id}/libros")
+    @GetMapping("/libros/{id}")
     public String mostrarLibrosDeEditorial(@PathVariable Long id, Model model) {
         Optional<Editorial> editorialOptional = editorialService.buscarPorId(id);
         if (editorialOptional.isPresent()) {
