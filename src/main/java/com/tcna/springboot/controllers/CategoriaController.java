@@ -48,7 +48,7 @@ public class CategoriaController {
         return "redirect:/categorias/listar";
     }
 
-    @GetMapping("/{id}/editar")
+    @GetMapping("/editar/{id}")
     public String mostrarFormularioEditarCategoria(@PathVariable Long id, Model model) {
         Optional<Categoria> categoria = categoriaService.buscarPorId(id);
         categoria.ifPresent(value -> model.addAttribute("categoria", value));
@@ -66,7 +66,7 @@ public class CategoriaController {
         return "redirect:/categorias/listar";
     }
 
-    @GetMapping
+    @GetMapping("/eliminar/{id}")
     public String eliminarCategoria(@PathVariable Long id) {
         categoriaService.eliminarCategoria(id);
         return "redirect:/categorias/listar";
