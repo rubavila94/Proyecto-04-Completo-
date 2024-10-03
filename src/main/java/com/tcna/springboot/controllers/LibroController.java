@@ -42,7 +42,7 @@ public class LibroController {
     @GetMapping({ "/listar", "/" })
     public String listarLibros(Model model) {
         List<Libro> libros = libroService.listarTodosLosLibros();
-        model.addAttribute("Libros", libros);
+        model.addAttribute("libros", libros);
         return "libro/listar_libros";
     }
 
@@ -76,11 +76,12 @@ public class LibroController {
         return "redirect:/libros/listar";
     }
 
-    @GetMapping("/editar")
+    @GetMapping("/editar/{id}")
     public String mostrarFormularioEditarLibro(@PathVariable Long id, Model model) {
         Optional<Libro> libro = libroService.buscarPorId(id);
         if (libro.isPresent()) {
-            model.addAttribute("libro", libro);
+            // con el et obtenemos el objeto
+            model.addAttribute("libro", libro.get());
             model.addAttribute("editoriales", editorialService.listarTodasEditoriales());
             model.addAttribute("categorias", categoriaService.listarTodasCategorias());
             model.addAttribute("autores", autorService.listarTodosLosAutores());
@@ -110,7 +111,7 @@ public class LibroController {
         return "redirect:/libros/listar";
     }
 
-    @GetMapping("path")
+    @GetMapping("/{id}/autores")
     public String mostrarAutoresDelLibro(@PathVariable Long id, Model model) {
         Optional<Libro> librOptional = libroService.buscarPorId(id);
         if (librOptional.isPresent()) {
@@ -121,7 +122,7 @@ public class LibroController {
         return "libro/mostrar_autores_libro";
     }
 
-    @GetMapping("/{id}/eliminar")
+    @GetMapping("/eliminar/{id}")
     public String eliminarLibro(@PathVariable Long id) {
         libroService.eliminarLibro(id);
         return "redirect:/libros/listar";
